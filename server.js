@@ -24,17 +24,29 @@ app.use(express.static("./public"));
 // -------------------------------------------------
 
 // MongoDB configuration (Change this URL to your own DB)
-mongoose.connect("mongodb://localhost/nytreact");
+mongoose.Promise = Promise;
+
+var databaseUri='mongodb://localhost/nytreact';
+
+// Connect to localhost if not a production environment
+if(process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI);
+}
+else{
+  mongoose.connect(databaseUri);
+  // YOU CAN IGNORE THE CONNECTION URL BELOW (LINE 41) THAT WAS JUST FOR DELETING STUFF ON A RE-DEPLOYMENT
+  //mongoose.connect('mongodb://heroku_60zpcwg0:ubn0n27pi2856flqoedo9glvh8@ds119578.mlab.com:19578/heroku_60zpcwg0');
+}
 var db = mongoose.connection;
 
-db.on("error", function(err) {
-  console.log("Mongoose Error: ", err);
+db.on('error', function(err) {
+  console.log('Mongoose Error: ', err);
 });
 
-db.once("open", function() {
-  console.log("Mongoose connection successful.");
+// Once logged in to the db through mongoose, log a success message
+db.once('open', function() {
+  console.log('Mongoose connection successful.');
 });
-
 // -------------------------------------------------
 
 // Main "/" Route. This will redirect the user to our rendered React application
