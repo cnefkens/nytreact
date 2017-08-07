@@ -21,7 +21,7 @@ var Main = React.createClass({
             <div className="container-fluid">
               <div className="navbar-header">
                 <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                </button><a className="navbar-brand" href="#">NYT-React</a>
+                </button><a className="navbar-brand" href="#" >NYT-React</a>
               </div>
               <div className="collapse navbar-collapse navbar-ex1-collapse">
                     <ul className="nav navbar-nav navbar-right">
@@ -33,17 +33,11 @@ var Main = React.createClass({
           </nav>
 
               <div className="jumbotron">
-                  <h2 className="text-center"><strong>New York Times Article Scrubber</strong></h2>
+                  <h2 className="text-center" style={ {"fontSize": "40px"}}><strong>New York Times Article Scrubber</strong></h2>
               </div>
    
         <div className="row">
-            {/* {this.props.children}   */}
-         
-    
-
-        {/* <Search  setSearch={this.setSearch} topic={this.state.topic} startYr={this.state.startYr} endYr={this.state.endYr}/>  
-            <Results setResults={this.setResults} results={this.state.results}/> 
-            <Saved setSaved={this.setSaved} saved={this.state.saved}/> */}
+       
            {this.props.children}   
 
       </div>

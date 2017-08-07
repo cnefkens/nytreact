@@ -37,14 +37,13 @@ const helpers = {
   },
 
   deleteArticle:(_id)  => {
-    return axios.delete("/api/saved", {
-         params:{'_id':_id}
-        }).then(function(results)
+    return axios.delete("/api/saved/" + _id)
+    .then(function(results)
         {
            return results;
-      })
-    }
-
+      }
+  )
+}
 };
 
 // We export the helpers function (which contains getGithubInfo)

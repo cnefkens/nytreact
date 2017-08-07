@@ -11,21 +11,7 @@ var SearchForm = React.createClass({
 
     return (this.state = {topic: this.props.topic, startYr: this.props.startYr, endYr: this.props.endYr});
     
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleChange=this.handleChange.bind(this);
-  },
-  // Here we set a generic state associated with the text being searched for
-
-  //  componentDidUpdate: function(prevProps, prevState) {
-
-  //   if (prevState.topic !== this.state.topic) {
-  //     console.log("UPDATED");
-  //     // We use this function to allow children to update the parent with searchTerms.
-  //       this.props.setSearch(this.state.topic, this.state.startYr, this.state.endYr);
-  //   }
-  // },
-
-  
+ },
   // // This function will respond to the user input
   handleChange: function(event) {
     var newState = {};
@@ -33,10 +19,8 @@ var SearchForm = React.createClass({
     this.setState(newState);
   },
 
-
-
   // // When a user submits...
-  handleSubmit() {
+  handleSubmit: function() {
     this.props.setSearch(this.state.topic, this.state.startYr, this.state.endYr)
           return false
   },
@@ -87,8 +71,8 @@ var SearchForm = React.createClass({
                         />
 					  </div>
 
-					  <button type="submit" className="btn btn-default" id="runSearch"><i className="fa fa-search"></i> Search</button>
-  					   <button type="button" className="btn btn-default" id="clearAll"><i className="fa fa-trash"></i> Clear Search </button> 
+					  <button type="submit" className="btn btn-default" id="runSearch" style={{"margin": "5px"}}><i className="fa fa-search" ></i> Search</button>
+  					   <a href="#/search"><button type="button" className="btn btn-default" id="clearAll" style={{"margin": "5px"}}><i className="fa fa-trash"></i> Clear Search </button></a>
 
 					 </form> 
 				 </div>

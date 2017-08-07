@@ -71,18 +71,18 @@ app.get("/api/saved", function(req, res) {
   });
 });
 
-app.delete("/api/saved", function(req, res) {
+app.delete("/api/saved/:_id", function(req, res) {
 
   // This GET request will search for the latest clickCount
   console.log(req.params);
-  Articles.remove({_id: req.params._id}).exec(function(err, data) {
+  Articles.findByIdAndRemove(req.params._id).exec(function(err, doc) {
      console.log("delete article");
     if (err) {
       console.log(err);
     }
     else {
-      console.log("server /api get results " + data);
-      res.send(data);
+      console.log("server /api get results " + doc);
+      res.send(doc);
     }
   });
 });
@@ -108,13 +108,13 @@ app.post("/api/saved", function(req, res) {
       pubDt: pubDt,
       url: url
     }
-  }, { upsert: true }).exec(function(err, data) {
+  }, { upsert: true }).exec(function(err, doc) {
 
     if (err) {
       console.log(err);
     }
     else {
-      res.send(data);
+      res.send(doc);
     }
   });
 });

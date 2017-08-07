@@ -34,14 +34,12 @@ var Saved = React.createClass ({
       }.bind(this));
   },
 
-     handleClick: function(article,event) {
-      var _id=article._id;
-       console.log(article._id);
-        helpers.deleteArticle({_id}).then(function(data) {
+     handleClick: function(event) {
+        helpers.deleteArticle(event.target.value).then(function(data) {
               console.log("Deleted from MongoDB");
                        
                helpers.getSaved()
-                .then(function(resposnse) {
+                .then(function(response) {
                     if (response.data === undefined) {
                         var newSaved=[];
                     }
@@ -80,8 +78,8 @@ var Saved = React.createClass ({
                 <h3>
                   <span><em>{article.title}</em></span>
                   <span className="btn-group pull-right" >
-                    <a href={article.url} target="_blank"><button className="btn btn-default">View Article</button></a>
-                    <button className="btn btn-primary" onClick={this.handleClick.bind(this, article)}>Delete</button>
+                    <a href={article.url} target="_blank"><button className="btn btn-default" style={{"margin": "5px"}}>View Article</button></a>
+                    <button className="btn btn-primary" onClick={this.handleClick} value={article._id} style={{"margin": "5px"}}>Delete</button>
                   </span>
                 </h3>
                 <p>Date Published: {article.pubDt}</p>
